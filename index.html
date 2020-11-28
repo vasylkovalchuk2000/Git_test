@@ -1,22 +1,61 @@
 ﻿<!doctype html>
 <html lang="ru">
+<script>
+	var Theme_number = 1;
+	var Default_theme = 1;
+	var Ext = "less";
+		//var Ext = "css";
+
+	function getUrl(num) {
+		return Ext + "/" + Ext + ".style" + num + ".css";
+		}
+
+		function getThemeNumber() {
+		Theme_number = Theme_number % 2 === 0 ? 1 : 2;
+		console.log(Theme_number);
+		return Theme_number;
+		}
+
+		function initialize() {
+		var link = document.createElement("link");
+		link.setAttribute("rel", "stylesheet");
+		link.setAttribute("href", getUrl(Default_theme));
+		document.head.appendChild(link);
+		}
+
+		function initListener() {
+		document
+			.querySelector(".mynav__theme")
+				.addEventListener("click", changeTheme);
+	}
+
+	function changeTheme() {
+				document.head
+						.querySelector("link")
+						.setAttribute("href", getUrl(getThemeNumber()));
+		}
+
+		initialize();
+
+		window.addEventListener("load", initListener);
+</script>
+	
 <head>
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-	<!-- Поключаем иконочный шрифт FontAwesome -->
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	<!-- Bootstrap CSS -->
 	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<!-- FancyBox CSS -->
 	<link rel="stylesheet" href="css/jquery.fancybox.min.css" media="screen">
 	<!-- My CSS -->
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-
-	<title>Tarasenkov</title>
+	<link rel="stylesheet" href="css/style.css">
+	<!-- <link rel="stylesheet" href="css/css.style1.css">
+	<link rel="stylesheet/less" type="text/css" href="less/less.style1.less"> -->
+	<title>Tarasenkov IK-71</title>
 </head>
 <body>
 	<header><!----------------------------------------------------------------------------------------------------------------------->
@@ -44,6 +83,9 @@
 						<li class="nav-item">
 							<a class="nav-link text-light bg-secondary" id="contacts-tab" data-toggle="tab" href="#contacts" role="tab" aria-controls="contacts" aria-selected="false">Контакты</a>
 						</li>
+						<li class="nav-item">
+              <a class="nav-link text-light bg-secondary" id="less-tab" data-toggle="tab" href="#less" role="tab" aria-controls="less" aria-selected="false">LESS</a>
+            </li>
 					</ul>
 
 					<ul class="nav  ml-auto">
@@ -288,27 +330,102 @@
 </div>
 
 <div class="tab-pane" id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
-<form>
-  <div class="form-group">
-    <label for="exampleFormControlInput1">Email address</label>
-    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-  </div>
+	<form>
+  	<div class="form-group">
+    	<label for="exampleFormControlInput1">Email address</label>
+    	<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+  	</div>
   
-  <div class="btn-group" role="group" aria-label="Basic example">
-  <button type="button" class="btn btn-success">Директору компанії</button>
-  <button type="button" class="btn btn-warning">Менеджеру</button>
-  <button type="button" class="btn btn-danger">Відділу рекламі</button>
-</div>
-   
-  
+  	<div class="btn-group" role="group" aria-label="Basic example">
+  		<button type="button" class="btn btn-success">Директору компанії</button>
+  		<button type="button" class="btn btn-warning">Менеджеру</button>
+  		<button type="button" class="btn btn-danger">Відділу рекламі</button>
+		</div>
    
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-	<button type="button" class="btn btn-dark">Отправить</button>
-  </div>
-</form>
-			</div>
-		</div>
+		<button type="button" class="btn btn-dark">Отправить</button>
+	</form>
 	</div>
+
+		<div class="tab-pane" id="less" role="tabpanel" aria-labelledby="less-tab">
+			<div class="wrapper">
+					<nav class="mynav">
+							<button class="mynav__theme">Change theme</button>
+							<ul class="mynav__menu">
+									<li class="mynav__item"><a href="#" class="mynav__link">Home</a></li>
+									<li class="mynav__item"><a href="#" class="mynav__link">About</a></li>
+									<li class="mynav__item"><a href="#" class="mynav__link">Items</a></li>
+									<li class="mynav__item"><a href="#" class="mynav__link">Contact</a></li>
+							</ul>
+					</nav>
+
+					<section class="main">
+							<div class="main__content">
+									<div class="main__tile main__tile--danger">
+											<div class="main__header">Product 1</div>
+											<ul class="main__features">
+													<li class="main__item">Feature 1<span class="main__plus">+</span></li>
+													<li class="main__item">Feature 2<span class="main__plus">+</span></li>
+													<li class="main__item">Feature 3<span class="main__plus">+</span></li>
+													<li class="main__item">Feature 4</li>
+													<li class="main__item">Feature 5</li>
+											</ul>
+
+											<div class="main__footer">
+													<button class="main__button main__button--danger hvr-rectangle-out">Click on me!</button>
+											</div>
+									</div>
+
+									<div class="main__tile main__tile--warning">
+											<div class="main__header">Product 2</div>
+											<ul class="main__features">
+													<li class="main__item">Feature 1<span class="main__plus">+</span></li>
+													<li class="main__item">Feature 2</li>
+													<li class="main__item">Feature 3<span class="main__plus">+</span></li>
+													<li class="main__item">Feature 4<span class="main__plus">+</span></li>
+													<li class="main__item">Feature 5</li>
+											</ul>
+
+											<div class="main__footer">
+													<button class="main__button main__button--warning hvr-rectangle-out">Click on me!</button>
+											</div>
+									</div>
+
+									<div class="main__tile main__tile--primary">
+											<div class="main__header">Product 3</div>
+											<ul class="main__features">
+													<li class="main__item">Feature 1</li>
+													<li class="main__item">Feature 2<span class="main__plus">+</span></li>
+													<li class="main__item">Feature 3<span class="main__plus">+</span></li>
+													<li class="main__item">Feature 4<span class="main__plus">+</span></li>
+													<li class="main__item">Feature 5</li>
+											</ul>
+
+											<div class="main__footer">
+													<button class="main__button main__button--primary hvr-rectangle-out">Click on me!</button>
+											</div>
+									</div>
+
+									<div class="main__tile main__tile--success">
+											<div class="main__header">Product 4</div>
+											<ul class="main__features">
+													<li class="main__item">Feature 1<span class="main__plus">+</span></li>
+													<li class="main__item">Feature 2</li>
+													<li class="main__item">Feature 3</li>
+													<li class="main__item">Feature 4<span class="main__plus">+</span></li>
+													<li class="main__item">Feature 5<span class="main__plus">+</span></li>
+											</ul>
+
+											<div class="main__footer">
+													<button class="main__button main__button--success hvr-rectangle-out">Click on me!</button>
+											</div>
+									</div>
+							</div>
+				 </section>
+ 				</div>
+			</div>
+	</div>
+</div>
 
 	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModal" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -370,5 +487,6 @@
 	<script src="js/jquery.fancybox.min.js"></script>
 	<!-- My JavaScript -->
 	<script src="js/main.js"></script>
+	<script src="node_modules/less/dist/less.min.js"></script>
 </body>
 </html>
